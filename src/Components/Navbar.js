@@ -1,62 +1,59 @@
 import React, { Component } from 'react';
-// import 'bulma/css/bulma.css';
+import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
     render() {
         return (
             <div>
-                <nav class="navbar" role="navigation" aria-label="main navigation">
-                    <div class="navbar-brand">
-                        <a class="navbar-item" href="https://bulma.io">
-                            <img src="http://logodust.com/img/free/logo46.png" />
+                <nav className="navbar" role="navigation" aria-label="main navigation">
+                    <div className="navbar-brand">
+                        <a className="navbar-item" href="https://bulma.io">
+                            <img alt="Logo" src="http://logodust.com/img/free/logo46.png" />
                         </a>
 
-                        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                            <span aria-hidden="true"></span>
-                            <span aria-hidden="true"></span>
-                            <span aria-hidden="true"></span>
+                        <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                         </a>
                     </div>
-                    <div id="navbarBasicExample" class="navbar-menu">
-                        <div class="navbar-start">
-                            <a href href="/" class="navbar-item">Home</a>
-                            <a href href="me" class="navbar-item">Me</a>
-                            <a href class="navbar-item">Create report</a>
+                    <div id="navbarBasicExample" className="navbar-menu">
+                        <div className="navbar-start">
+                            <Link to="/" className="navbar-item">Home</Link>
+                            <Link to="/me" className="navbar-item">Me</Link>
+                            <Link to="/report" className="navbar-item">Create report</Link>
 
-                            <div class="navbar-item has-dropdown is-hoverable">
-                                <a class="navbar-link">
+                            <div className="navbar-item has-dropdown is-hoverable">
+                                <a className="navbar-link">
                                     Reports
                                 </a>
 
-                                <div class="navbar-dropdown">
-                                <a href="/reports/kmom01" class="navbar-item">
+                                <div className="navbar-dropdown">
+                                <Link to="/reports/kmom01" className="navbar-item">
                                     Kmom01
-                                </a>
-                                <a href="/reports/kmom02" class="navbar-item">
+                                </Link>
+                                <Link to="/reports/kmom02" className="navbar-item">
                                     Kmom02
-                                </a>
-                                <a href="/reports/kmom03" class="navbar-item">
+                                </Link>
+                                <Link to="/reports/kmom03" className="navbar-item">
                                     Kmom03
-                                </a>
-                                <a href="/reports/kmom04" class="navbar-item">
+                                </Link>
+                                <Link to="/reports/kmom04" className="navbar-item">
                                     Kmom04
-                                </a>
-                                <a href="/reports/kmom05" class="navbar-item">
+                                </Link>
+                                <Link to="/reports/kmom05" className="navbar-item">
                                     Kmom05
-                                </a>
-                                <a href="/reports/kmom06" class="navbar-item">
+                                </Link>
+                                <Link to="/reports/kmom06" className="navbar-item">
                                     Kmom06
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
-                    <div class="navbar-end">
-                        <div class="navbar-item">
-                            <div class="buttons">
-                                <a class="button is-primary">
+                    <div className="navbar-end">
+                        <div className="navbar-item">
+                            <div className="buttons">
+                                <a className="button is-primary">
                                     <strong>Sign up</strong>
                                 </a>
-                                <a class="button is-danger">
+                                <a className="button is-danger">
                                     Log in
                                 </a>
                             </div>
