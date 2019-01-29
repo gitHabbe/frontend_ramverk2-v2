@@ -19,15 +19,9 @@ class Navbar extends Component {
                     </div>
                     <div id="navbarBasicExample" class="navbar-menu">
                         <div class="navbar-start">
-                            <a href class="navbar-item">
-                                Home
-                            </a>
-                            <a href class="navbar-item">
-                                Me
-                            </a>
-                            <a href class="navbar-item">
-                                Reports
-                            </a>
+                            <a href href="/" class="navbar-item">Home</a>
+                            <a href href="me" class="navbar-item">Me</a>
+                            <a href class="navbar-item">Reports</a>
 
                             <div class="navbar-item has-dropdown is-hoverable">
                                 <a class="navbar-link">
@@ -47,6 +41,12 @@ class Navbar extends Component {
                                 <a class="navbar-item">
                                     Kmom04
                                 </a>
+                                <a class="navbar-item">
+                                    Kmom05
+                                </a>
+                                <a class="navbar-item">
+                                    Kmom06
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@ class Navbar extends Component {
                                 <a class="button is-primary">
                                     <strong>Sign up</strong>
                                 </a>
-                                <a class="button is-light">
+                                <a class="button is-danger">
                                     Log in
                                 </a>
                             </div>
