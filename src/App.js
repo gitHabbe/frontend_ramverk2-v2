@@ -7,6 +7,7 @@ import Navbar from "./Components/Navbar.js";
 import Home from "./Components/Home.js";
 import Me from "./Components/Me.js";
 import Report from "./Components/Report.js";
+import NewReport from "./Components/NewReport.js";
 
 class App extends Component {
   render() {
@@ -14,9 +15,10 @@ class App extends Component {
       <Router>
         <div className="App">
           <Navbar />
-          <Route exact path="/"     component={Home}/>
-          <Route path="/me"         component={Me}/>
-          <Route path="/reports/:num"  component={Report}/>
+          <Route exact path="/"         component={Home}/>
+          <Route path="/me"             component={Me}/>
+          <Route path="/new-report"     component={NewReport}/>
+          <Route path="/reports/:num"   component={Report}/>
         </div>
       </Router>
     );
