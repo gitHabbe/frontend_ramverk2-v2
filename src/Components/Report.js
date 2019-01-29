@@ -12,7 +12,7 @@ class Report extends Component {
 
     async componentDidMount() {
         
-        const kmomData = await axios.get(`http://localhost:8333/reports/${this.state.kmom}`);
+        const kmomData = await axios.get(`https://me-api.nhallberg.me/reports/${this.state.kmom}`);
         this.setState({ kmomData });
         console.log("CDM");
     }
