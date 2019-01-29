@@ -21,30 +21,30 @@ class Navbar extends Component {
                         <div class="navbar-start">
                             <a href href="/" class="navbar-item">Home</a>
                             <a href href="me" class="navbar-item">Me</a>
-                            <a href class="navbar-item">Reports</a>
+                            <a href class="navbar-item">Create report</a>
 
                             <div class="navbar-item has-dropdown is-hoverable">
                                 <a class="navbar-link">
-                                    More
+                                    Reports
                                 </a>
 
                                 <div class="navbar-dropdown">
-                                <a class="navbar-item">
+                                <a href="/reports/kmom01" class="navbar-item">
                                     Kmom01
                                 </a>
-                                <a class="navbar-item">
+                                <a href="/reports/kmom02" class="navbar-item">
                                     Kmom02
                                 </a>
-                                <a class="navbar-item">
+                                <a href="/reports/kmom03" class="navbar-item">
                                     Kmom03
                                 </a>
-                                <a class="navbar-item">
+                                <a href="/reports/kmom04" class="navbar-item">
                                     Kmom04
                                 </a>
-                                <a class="navbar-item">
+                                <a href="/reports/kmom05" class="navbar-item">
                                     Kmom05
                                 </a>
-                                <a class="navbar-item">
+                                <a href="/reports/kmom06" class="navbar-item">
                                     Kmom06
                                 </a>
                             </div>

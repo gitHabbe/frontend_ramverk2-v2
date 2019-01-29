@@ -5,6 +5,8 @@ import './App.css';
 
 import Navbar from "./Components/Navbar.js";
 import Home from "./Components/Home.js";
+import Me from "./Components/Me.js";
+import Report from "./Components/Report.js";
 
 class App extends Component {
   render() {
@@ -12,8 +14,9 @@ class App extends Component {
       <Router>
         <div className="App">
           <Navbar />
-          <Route exact path="/" component={Home}/>
-          {/* <Route path="/me" component={Navbar}/> */}
+          <Route exact path="/"     component={Home}/>
+          <Route path="/me"         component={Me}/>
+          <Route path="/reports/*"  component={Report}/>
         </div>
       </Router>
     );
