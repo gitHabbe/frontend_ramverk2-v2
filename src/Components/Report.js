@@ -11,8 +11,8 @@ class Report extends Component {
     }
 
     async componentDidMount() {
-        
         const kmomData = await axios.get(`https://me-api.nhallberg.me/reports/${this.state.kmom}`);
+		// console.log('TCL: Report -> componentDidMount -> kmomData.data', kmomData.data)
         this.setState({ kmomData });
         console.log("CDM");
     }
