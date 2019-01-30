@@ -8,6 +8,8 @@ import Home from "./Components/Home.js";
 import Me from "./Components/Me.js";
 import Report from "./Components/Report.js";
 import NewReport from "./Components/NewReport.js";
+import Register from "./Components/Register.js";
+import Login from "./Components/Login.js";
 
 class App extends Component {
   render() {
@@ -19,8 +21,8 @@ class App extends Component {
           <Route path="/me"             component={Me}/>
           <Route path="/new-report"     component={NewReport}/>
           <Route path="/reports/:num"   component={Report}/>
-          <Route path="/register"       component={Report}/>
-          <Route path="/login"          component={Report}/>
+          <Route path="/register"       component={Register}/>
+          <Route path="/login"          component={Login}/>
         </div>
       </Router>
     );
