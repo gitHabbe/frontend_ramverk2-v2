@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
+axios.defaults.headers.common['Authorization'] =
+    "Bearer " + localStorage.getItem('jwt');
+
 
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            redirect: false
         }
 
     }
@@ -16,15 +21,24 @@ class Login extends Component {
     async onSubmit(e) {
         e.preventDefault();
         const { email, password } = this.state;
-        console.log('this.state: ', this.state);
-        const login = await axios.post("https://me-api.nhallberg.me/login/", {
+        // const login = await axios.post("https://me-api.nhallberg.me/login/", {
+        const login = await axios.post("http://localhost:8333/login/", {
             'email': email,
             'password': password
         });
-        console.log('login: ', login);
+        if (login.data) {
+			console.log('TCL: onSubmit -> login.data', login.data)
+            localStorage.setItem("jwtToken", login.data);
+            console.log("redirect");
+            this.setState({redirect: true})
+            // this.props.history.push('/me');
+        }
     }
     
     render() {
+        if (this.state.redirect) {
+            return <Redirect to="/me" />
+        }
         return (
             <div className="container">
                 <div onSubmit={this.onSubmit.bind(this)} className="columns is-centered">

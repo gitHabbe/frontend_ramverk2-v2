@@ -1,8 +1,41 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from "axios";
 
 class Navbar extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoggedIn: true
+        }
+    }
+    
+
+    async componentDidMount() {
+        console.log("this.state.isLoggedIn", this.state.isLoggedIn);
+        // console.log(localStorage.getItem("jwtToken"));
+        // const isOuth = await axios.get("https://me-api.nhallberg.me/jwt_outh", {
+        const isOuth = await axios.get("http://localhost:8333/jwt_outh", {
+            headers: {
+                'Content-Type': "application/x-www-form-urlencoded",
+                'x-access-token': localStorage.getItem("jwtToken")
+            }
+        });
+        console.log('TCL: Navbar -> componentDidMount -> isOuth', isOuth)
+        if (isOuth.data.err === "401") {
+            this.setState({isLoggedIn: false});
+        } else {
+            console.log("ELSE");
+            this.setState({isLoggedIn: true});
+        }
+    }
+
+    // onLogoutClick(e) {
+
+    // }
+
     render() {
+        const isLoggedIn = this.state.isLoggedIn
         return (
             <div>
                 <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -18,7 +51,7 @@ class Navbar extends Component {
                         <div className="navbar-start">
                             <Link to="/" className="navbar-item">Home</Link>
                             <Link to="/me" className="navbar-item">Me</Link>
-                            <Link to="/new-report" className="navbar-item">Create report</Link>
+                            {isLoggedIn ? <Link to="/new-report" className="navbar-item">Create report</Link> : ""}
 
                             <div className="navbar-item has-dropdown is-hoverable">
                                 <a className="navbar-link">
@@ -50,12 +83,15 @@ class Navbar extends Component {
                     <div className="navbar-end">
                         <div className="navbar-item">
                             <div className="buttons">
-                                <Link to="/login" className="button is-primary">
+                                {isLoggedIn ? <Link to="/logout" className="button is-warning">
+                                    Logout
+                                </Link> : <Link to="/login" className="button is-primary">
                                     Log in
                                 </Link>
-                                <Link to="/register"className="button is-danger">
+                                }
+                                {isLoggedIn ? "" : <Link to="#"className="button is-danger">
                                     <strong>Sign up</strong>
-                                </Link>
+                                </Link>}
                             </div>
                         </div>
                     </div>
