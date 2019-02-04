@@ -35,10 +35,10 @@ class NewReport extends Component {
                                 <textarea onChange={this.onChange.bind(this)} name="report" className="textarea" placeholder="Report text"></textarea>
                             </div>
                         </div>
-                        <div class="control column is-centered">
+                        <div className="control column is-centered">
                             <button
                                 onClick={this.onSubmit.bind(this)}
-                                class="button is-centered is-link">
+                                className="button is-centered is-link">
                                 Submit report
                             </button>
                         </div>

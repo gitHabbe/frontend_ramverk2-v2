@@ -50,11 +50,11 @@ class Navbar extends Component {
                     <div className="navbar-end">
                         <div className="navbar-item">
                             <div className="buttons">
-                                <Link to="/register"className="button is-primary">
-                                    <strong>Sign up</strong>
-                                </Link>
-                                <Link to="/login" className="button is-danger">
+                                <Link to="/login" className="button is-primary">
                                     Log in
+                                </Link>
+                                <Link to="/register"className="button is-danger">
+                                    <strong>Sign up</strong>
                                 </Link>
                             </div>
                         </div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class Login extends Component {
     constructor(props) {
@@ -9,14 +10,18 @@ class Login extends Component {
         }
 
     }
-    onChange = e => this.setState({ [e.target.name]: e.target.value });
+
+    onChange = e => this.setState({[e.target.name]: e.target.value});
 
     async onSubmit(e) {
         e.preventDefault();
-        // const test = await axios.get("me-api.nhallberg.me/");
-        console.log(this.state);
-        
-        console.log("submit");
+        const { email, password } = this.state;
+        console.log('this.state: ', this.state);
+        const login = await axios.post("https://me-api.nhallberg.me/login/", {
+            'email': email,
+            'password': password
+        });
+        console.log('login: ', login);
     }
     
     render() {

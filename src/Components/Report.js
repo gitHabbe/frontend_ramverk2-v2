@@ -12,15 +12,19 @@ class Report extends Component {
 
     async componentDidMount() {
         const kmomData = await axios.get(`https://me-api.nhallberg.me/reports/${this.state.kmom}`);
-		// console.log('TCL: Report -> componentDidMount -> kmomData.data', kmomData.data)
         this.setState({ kmomData });
-        console.log("CDM");
     }
     
+    async componentDidUpdate(prevProps) {
+        const prevNum = prevProps.match.params.num;
+        const curNum = this.props.match.params.num;
+        if (prevNum !== curNum) {
+            const kmomData = await axios.get(`https://me-api.nhallberg.me/reports/${curNum}`);
+            this.setState({ kmomData });
+        }
+    }
+
     render() {
-        console.log("this.props.match.params.num", this.props.match.params.num);
-        console.log("render()");
-        console.log("this.state.kmomData", this.state.kmomData);
         return (
             <div className="container">
                 <section className="hero is-primary">
