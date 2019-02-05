@@ -1,35 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from "axios";
 
 class Navbar extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            isLoggedIn: true
-        }
+
+        this.onLogoutClick = this.onLogoutClick.bind(this);
     }
     
-
-    async componentDidMount() {
-        try {
-            const isOuth = await axios.get("http://localhost:8333/jwt_outh", {
-                headers: {
-                    'Content-Type': "application/x-www-form-urlencoded",
-                    'x-access-token': localStorage.getItem("jwtToken")
-                }
-            });
-            this.setState({isLoggedIn: true});
-            this.props.setUser();
-            
-        } catch (error) {
-            this.setState({isLoggedIn: false});
-            
-        }
-    }
-
     onLogoutClick(e) {
-
+        localStorage.removeItem("jwtToken");
+        this.setState({isLoggedIn: false});
+        this.props.setUser();
     }
 
     render() {
@@ -43,7 +25,7 @@ class Navbar extends Component {
                             <img alt="Logo" src="http://logodust.com/img/free/logo46.png" />
                         </a>
 
-                        <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                        <a href="#" role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                         </a>
                     </div>
                     <div id="navbarBasicExample" className="navbar-menu">
@@ -53,7 +35,7 @@ class Navbar extends Component {
                             {isLoggedIn ? <Link to="/new-report" className="navbar-item">Create report</Link> : ""}
 
                             <div className="navbar-item has-dropdown is-hoverable">
-                                <a className="navbar-link">
+                                <a href="#" className="navbar-link">
                                     Reports
                                 </a>
 
@@ -82,7 +64,7 @@ class Navbar extends Component {
                     <div className="navbar-end">
                         <div className="navbar-item">
                             <div className="buttons">
-                                {isLoggedIn ? <Link to="/logout" className="button is-warning">
+                                {isLoggedIn ? <Link to="/logout" onClick={this.onLogoutClick}className="button is-warning">
                                     Logout
                                 </Link> : <Link to="/login" className="button is-primary">
                                     Log in
