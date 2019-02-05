@@ -23,17 +23,17 @@ class Login extends Component {
         const { email, password } = this.state;
         // console.log("submitted")
         // const login = await axios.post("http://localhost:8333/login/", {
-        console.log("loggin in");
+        // console.log("loggin in");
         try {
             const login = await axios.post("http://localhost:8333/login/", {
                 'email': email,
                 'password': password
             });
-            console.log('login: ', login);
             localStorage.setItem("jwtToken", login.data.token);
+            this.props.setUser();
             this.setState({redirect: true});
         } catch (error) {
-			console.log('TCL: }catch -> error', error)
+			// console.log('TCL: }catch -> error', error)
             this.setState({redirect: false});
         }
     }

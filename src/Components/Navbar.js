@@ -12,29 +12,29 @@ class Navbar extends Component {
     
 
     async componentDidMount() {
-        console.log("this.state.isLoggedIn", this.state.isLoggedIn);
-        // console.log(localStorage.getItem("jwtToken"));
-        // const isOuth = await axios.get("http://localhost:8333/jwt_outh", {
-        const isOuth = await axios.get("http://localhost:8333/jwt_outh", {
-            headers: {
-                'Content-Type': "application/x-www-form-urlencoded",
-                'x-access-token': localStorage.getItem("jwtToken")
-            }
-        });
-        console.log('TCL: Navbar -> componentDidMount -> isOuth', isOuth)
-        if (isOuth.data.data === "401") {
-            this.setState({isLoggedIn: false});
-        } else if (isOuth.data.data === "200") {
+        try {
+            const isOuth = await axios.get("http://localhost:8333/jwt_outh", {
+                headers: {
+                    'Content-Type': "application/x-www-form-urlencoded",
+                    'x-access-token': localStorage.getItem("jwtToken")
+                }
+            });
             this.setState({isLoggedIn: true});
+            this.props.setUser();
+            
+        } catch (error) {
+            this.setState({isLoggedIn: false});
+            
         }
     }
 
-    // onLogoutClick(e) {
+    onLogoutClick(e) {
 
-    // }
+    }
 
     render() {
-        const isLoggedIn = this.state.isLoggedIn
+        const isLoggedIn = this.props.isLoggedIn
+		console.log('TCL: Navbar -> render -> isLoggedIn', isLoggedIn)
         return (
             <div>
                 <nav className="navbar" role="navigation" aria-label="main navigation">

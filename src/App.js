@@ -19,19 +19,42 @@ class App extends Component {
       isLoggedIn: false,
       user: {}
     }
+
+    this.setUser = this.setUser.bind(this);
   }
 
   async componentDidMount() {
-    const user = await axios.get("http://localhost:8333/jwt_outh",
-    {
-      headers: {
-        'x-access-token': localStorage.getItem("jwtToken")
-      }
-    });
-    console.log('user: ', user);
+    try {
+      const user = await axios.get("http://localhost:8333/jwt_outh",
+      {
+        headers: {
+          'x-access-token': localStorage.getItem("jwtToken")
+        }
+      });
+      console.log('user: ', user);
+      this.setState({isLoggedIn: true})
+      
+    } catch (error) {
+			console.log('TCL: App -> }catch -> error', error)
+      
+    }
   }
   
   async setUser() {
+    try {
+      const user = await axios.get("http://localhost:8333/jwt_outh",
+      {
+        headers: {
+          'x-access-token': localStorage.getItem("jwtToken")
+        }
+      });
+      console.log('user: ', user);
+      this.setState({isLoggedIn: true, user});
+      
+    } catch (error) {
+			console.log('TCL: App -> }catch -> error', error)
+      
+    }
 
   }
   
@@ -39,13 +62,13 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Navbar />
+          <Navbar isLoggedIn={this.state.isLoggedIn}/>
           <Route exact path="/"         component={Home}/>
           <Route path="/me"             component={Me}/>
           <Route path="/new-report"     component={NewReport}/>
           <Route path="/reports/:num"   component={Report}/>
           <Route path="/register"       component={Register}/>
-          <Route path="/login"          component={Login}/>
+          <Route path="/login"          render={props => <Login {...props} setUser={this.setUser}/>}/>
         </div>
       </Router>
     );
