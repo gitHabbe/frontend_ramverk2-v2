@@ -18,7 +18,7 @@ class NewReport extends Component {
 
     async componentDidMount() {
         console.log(localStorage.getItem("jwtToken"));
-        const isOuth = await axios.get("https://me-api.nhallberg.me/jwt_outh", {
+        const isOuth = await axios.get("http://localhost:8333/jwt_outh", {
             headers: {
                 // 'Content-Type': "application/x-www-form-urlencoded",
                 'x-access-token': localStorage.getItem("jwtToken")

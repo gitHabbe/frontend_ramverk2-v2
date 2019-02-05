@@ -11,7 +11,7 @@ class Report extends Component {
     }
 
     async componentDidMount() {
-        const kmomData = await axios.get(`https://me-api.nhallberg.me/reports/${this.state.kmom}`);
+        const kmomData = await axios.get(`http://localhost:8333/reports/${this.state.kmom}`);
         this.setState({ kmomData });
     }
     
@@ -19,7 +19,7 @@ class Report extends Component {
         const prevNum = prevProps.match.params.num;
         const curNum = this.props.match.params.num;
         if (prevNum !== curNum) {
-            const kmomData = await axios.get(`https://me-api.nhallberg.me/reports/${curNum}`);
+            const kmomData = await axios.get(`http://localhost:8333/reports/${curNum}`);
             this.setState({ kmomData });
         }
     }

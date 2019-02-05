@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, } from 'react-router-dom';
+import axios from 'axios';
 import 'bulma/css/bulma.css';
 import './App.css';
 
@@ -12,6 +13,28 @@ import Register from "./Components/Register.js";
 import Login from "./Components/Login.js";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn: false,
+      user: {}
+    }
+  }
+
+  async componentDidMount() {
+    const user = await axios.get("http://localhost:8333/jwt_outh",
+    {
+      headers: {
+        'x-access-token': localStorage.getItem("jwtToken")
+      }
+    });
+    console.log('user: ', user);
+  }
+  
+  async setUser() {
+
+  }
+  
   render() {
     return (
       <Router>

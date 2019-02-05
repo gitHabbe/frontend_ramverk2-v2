@@ -21,17 +21,20 @@ class Login extends Component {
     async onSubmit(e) {
         e.preventDefault();
         const { email, password } = this.state;
-        // const login = await axios.post("https://me-api.nhallberg.me/login/", {
-        const login = await axios.post("http://localhost:8333/login/", {
-            'email': email,
-            'password': password
-        });
-        if (login.data) {
-			console.log('TCL: onSubmit -> login.data', login.data)
-            localStorage.setItem("jwtToken", login.data);
-            console.log("redirect");
-            this.setState({redirect: true})
-            // this.props.history.push('/me');
+        // console.log("submitted")
+        // const login = await axios.post("http://localhost:8333/login/", {
+        console.log("loggin in");
+        try {
+            const login = await axios.post("http://localhost:8333/login/", {
+                'email': email,
+                'password': password
+            });
+            console.log('login: ', login);
+            localStorage.setItem("jwtToken", login.data.token);
+            this.setState({redirect: true});
+        } catch (error) {
+			console.log('TCL: }catch -> error', error)
+            this.setState({redirect: false});
         }
     }
     

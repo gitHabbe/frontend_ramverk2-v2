@@ -14,7 +14,7 @@ class Navbar extends Component {
     async componentDidMount() {
         console.log("this.state.isLoggedIn", this.state.isLoggedIn);
         // console.log(localStorage.getItem("jwtToken"));
-        // const isOuth = await axios.get("https://me-api.nhallberg.me/jwt_outh", {
+        // const isOuth = await axios.get("http://localhost:8333/jwt_outh", {
         const isOuth = await axios.get("http://localhost:8333/jwt_outh", {
             headers: {
                 'Content-Type': "application/x-www-form-urlencoded",
@@ -22,10 +22,9 @@ class Navbar extends Component {
             }
         });
         console.log('TCL: Navbar -> componentDidMount -> isOuth', isOuth)
-        if (isOuth.data.err === "401") {
+        if (isOuth.data.data === "401") {
             this.setState({isLoggedIn: false});
-        } else {
-            console.log("ELSE");
+        } else if (isOuth.data.data === "200") {
             this.setState({isLoggedIn: true});
         }
     }
