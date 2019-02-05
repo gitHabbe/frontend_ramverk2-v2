@@ -11,16 +11,42 @@ class Report extends Component {
     }
 
     async componentDidMount() {
-        const kmomData = await axios.get(`http://localhost:8333/reports/${this.state.kmom}`);
-        this.setState({ kmomData });
+        try {
+            const kmomData = await axios.get(`http://localhost:8333/reports/${this.state.kmom}`);
+            this.setState({ kmomData });
+        } catch (error) {
+            console.log('TCL: Report -> }catch -> error', error);
+            // Ugly slution but it works for now
+            this.setState({
+                kmomData: {
+                    data: {
+                        kmomData: { kmom: this.state.kmom, report: "No report yet"}
+                    }
+                }
+            });
+        }
     }
     
     async componentDidUpdate(prevProps) {
         const prevNum = prevProps.match.params.num;
         const curNum = this.props.match.params.num;
         if (prevNum !== curNum) {
-            const kmomData = await axios.get(`http://localhost:8333/reports/${curNum}`);
-            this.setState({ kmomData });
+            // const kmomData = await axios.get(`http://localhost:8333/reports/${curNum}`);
+            // this.setState({ kmomData });
+            try {
+                const kmomData = await axios.get(`http://localhost:8333/reports/${curNum}`);
+                this.setState({ kmomData });
+            } catch (error) {
+                console.log('TCL: Report -> }catch -> error', error);
+                // Ugly slution but it works for now
+                this.setState({
+                    kmomData: {
+                        data: {
+                            kmomData: { kmom: curNum, report: "No report yet"}
+                        }
+                    }
+                });
+            }
         }
     }
 
