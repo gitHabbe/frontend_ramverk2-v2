@@ -70,7 +70,7 @@ class Navbar extends Component {
                                     Log in
                                 </Link>
                                 }
-                                {isLoggedIn ? "" : <Link to="#"className="button is-danger">
+                                {isLoggedIn ? "" : <Link to="/register"className="button is-danger">
                                     <strong>Sign up</strong>
                                 </Link>}
                             </div>

@@ -23,9 +23,9 @@ class Login extends Component {
         const { email, password } = this.state;
         // console.log("submitted")
         // const login = await axios.post("http://localhost:8333/login/", {
-        // console.log("loggin in");
+        console.log("loggin in");
         try {
-            const login = await axios.post("http://localhost:8333/login/", {
+            const login = await axios.post("http://localhost:8333/login", {
                 'email': email,
                 'password': password
             });
