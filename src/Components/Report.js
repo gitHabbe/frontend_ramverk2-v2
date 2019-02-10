@@ -12,7 +12,7 @@ class Report extends Component {
 
     async componentDidMount() {
         try {
-            const kmomData = await axios.get(`http://localhost:8333/reports/${this.state.kmom}`);
+            const kmomData = await axios.get(`https://me-api.nhallberg.me/reports/${this.state.kmom}`);
             this.setState({ kmomData });
         } catch (error) {
             console.log('TCL: Report -> }catch -> error', error);
@@ -31,10 +31,10 @@ class Report extends Component {
         const prevNum = prevProps.match.params.num;
         const curNum = this.props.match.params.num;
         if (prevNum !== curNum) {
-            // const kmomData = await axios.get(`http://localhost:8333/reports/${curNum}`);
+            // const kmomData = await axios.get(`https://me-api.nhallberg.me/reports/${curNum}`);
             // this.setState({ kmomData });
             try {
-                const kmomData = await axios.get(`http://localhost:8333/reports/${curNum}`);
+                const kmomData = await axios.get(`https://me-api.nhallberg.me/reports/${curNum}`);
                 this.setState({ kmomData });
             } catch (error) {
                 console.log('TCL: Report -> }catch -> error', error);

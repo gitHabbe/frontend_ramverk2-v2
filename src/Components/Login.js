@@ -22,10 +22,10 @@ class Login extends Component {
         e.preventDefault();
         const { email, password } = this.state;
         // console.log("submitted")
-        // const login = await axios.post("http://localhost:8333/login/", {
+        // const login = await axios.post("https://me-api.nhallberg.me/login/", {
         console.log("loggin in");
         try {
-            const login = await axios.post("http://localhost:8333/login", {
+            const login = await axios.post("https://me-api.nhallberg.me/login", {
                 'email': email,
                 'password': password
             });

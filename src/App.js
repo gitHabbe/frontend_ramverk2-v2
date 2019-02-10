@@ -25,7 +25,7 @@ class App extends Component {
 
   async componentDidMount() {
     try {
-      const user = await axios.get("http://localhost:8333/jwt_outh",
+      const user = await axios.get("https://me-api.nhallberg.me/jwt_outh",
       {
         headers: {
           'x-access-token': localStorage.getItem("jwtToken")
@@ -42,7 +42,7 @@ class App extends Component {
   
   async setUser() {
     try {
-      const user = await axios.get("http://localhost:8333/jwt_outh",
+      const user = await axios.get("https://me-api.nhallberg.me/jwt_outh",
       {
         headers: {
           'x-access-token': localStorage.getItem("jwtToken")
