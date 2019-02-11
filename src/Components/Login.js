@@ -21,11 +21,9 @@ class Login extends Component {
     async onSubmit(e) {
         e.preventDefault();
         const { email, password } = this.state;
-        // console.log("submitted")
-        // const login = await axios.post("https://me-api.nhallberg.me/login/", {
         console.log("loggin in");
         try {
-            const login = await axios.post("https://me-api.nhallberg.me/login", {
+            const login = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
                 'email': email,
                 'password': password
             });

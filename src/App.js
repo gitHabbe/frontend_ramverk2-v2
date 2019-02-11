@@ -11,6 +11,7 @@ import Report from "./Components/Report.js";
 import NewReport from "./Components/NewReport.js";
 import Register from "./Components/Register.js";
 import Login from "./Components/Login.js";
+require('dotenv').load();
 
 class App extends Component {
   constructor(props) {
@@ -19,13 +20,14 @@ class App extends Component {
       isLoggedIn: false,
       user: {}
     }
-
+    
     this.setUser = this.setUser.bind(this);
   }
-
+  
   async componentDidMount() {
+    console.log("process.env.REACT_APP_API_URL", process.env.REACT_APP_API_URL);
     try {
-      const user = await axios.get("https://me-api.nhallberg.me/jwt_outh",
+      const user = await axios.get(`${process.env.REACT_APP_API_URL}/jwt_outh`,
       {
         headers: {
           'x-access-token': localStorage.getItem("jwtToken")
@@ -42,7 +44,7 @@ class App extends Component {
   
   async setUser() {
     try {
-      const user = await axios.get("https://me-api.nhallberg.me/jwt_outh",
+      const user = await axios.get(`${process.env.REACT_APP_API_URL}/jwt_outh`,
       {
         headers: {
           'x-access-token': localStorage.getItem("jwtToken")

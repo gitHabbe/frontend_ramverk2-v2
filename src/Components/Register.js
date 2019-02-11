@@ -19,7 +19,7 @@ class Register extends Component {
         e.preventDefault();
         const { email, password } = this.state;
         console.log('this.state: ', this.state);
-        const newUser = await axios.post("https://me-api.nhallberg.me/register/", {
+        const newUser = await axios.post(`${process.env.REACT_APP_API_URL}/register/`, {
             'email': email,
             'password': password
         });

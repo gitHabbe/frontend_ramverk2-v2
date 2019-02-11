@@ -22,7 +22,7 @@ class NewReport extends Component {
 
     async componentDidMount() {
         console.log(localStorage.getItem("jwtToken"));
-        const isOuth = await axios.get("https://me-api.nhallberg.me/jwt_outh", {
+        const isOuth = await axios.get(`${process.env.REACT_APP_API_URL}/jwt_outh`, {
             headers: {
                 // 'Content-Type': "application/x-www-form-urlencoded",
                 'x-access-token': localStorage.getItem("jwtToken")
@@ -80,7 +80,7 @@ class NewReport extends Component {
 		// console.log('TCL: NewReport -> onSubmit -> kmomNum, report', kmomNum, report)
         // console.log(localStorage.getItem('jwtToken'));
         try {
-            const reportInfo = await axios.post("https://me-api.nhallberg.me/reports",
+            const reportInfo = await axios.post(`${process.env.REACT_APP_API_URL}/reports`,
                 data,
                 {
                     headers: {
