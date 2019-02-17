@@ -55,7 +55,7 @@ class Login extends Component {
                                 className="input is-rounded" name="password" type="text" placeholder="Password"></input>
                         </div>
                         <div className="field">
-                            <button className="button is-link" type="submit">Login</button>
+                            <button className="button is-link submit" type="submit">Login</button>
                         </div>
                     </form>
                 </div>

@@ -16,7 +16,7 @@ class Navbar extends Component {
 
     render() {
         const isLoggedIn = this.props.isLoggedIn
-		console.log('TCL: Navbar -> render -> isLoggedIn', isLoggedIn)
+		// console.log('TCL: Navbar -> render -> isLoggedIn', isLoggedIn);
         return (
             <div>
                 <nav className="navbar" role="navigation" aria-label="main navigation">
