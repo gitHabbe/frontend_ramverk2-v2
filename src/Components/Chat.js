@@ -5,7 +5,8 @@ class Chat extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            socket: ""
+            socket: "",
+            chatMsg: ""
         }
         
     }
@@ -15,18 +16,18 @@ class Chat extends Component {
         this.setState({socket});
     }
     
+    onChange = (e) => this.setState({[e.target.name]: e.target.value});
 
-    test() {
-        this.state.socket.emit("msg", "test")
-        console.log('TCL: Chat -> socket', this.state.socket);
-        // this.state.socket.on("msg", msg => console.log(msg))
+    sendMsg() {
+        this.state.socket.emit("msg", this.state.chatMsg);
     }
     
     render() {
         return (
             <div>
                 <ul className="chatLog"></ul>
-                <button onClick={this.test.bind(this)}>ASDF</button>
+                <input onChange={this.onChange.bind(this)} type="text" name="chatMsg" id="chatMsg" placeholder="Chat msg" />
+                <button onClick={this.sendMsg.bind(this)}>ASDF</button>
             </div>
         )
     };
