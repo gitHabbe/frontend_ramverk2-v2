@@ -11,6 +11,7 @@ import Report from "./Components/Report.js";
 import NewReport from "./Components/NewReport.js";
 import Register from "./Components/Register.js";
 import Login from "./Components/Login.js";
+import Chat from "./Components/Chat.js";
 require('dotenv').load();
 
 class App extends Component {
@@ -71,6 +72,7 @@ class App extends Component {
           <Route path="/reports/:num"   component={Report}/>
           <Route path="/register"       component={Register}/>
           <Route path="/login"          render={props => <Login {...props} setUser={this.setUser}/>}/>
+          <Route path="/chat"           component={Chat}/>
         </div>
       </Router>
     );
