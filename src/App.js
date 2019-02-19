@@ -34,11 +34,11 @@ class App extends Component {
           'x-access-token': localStorage.getItem("jwtToken")
         }
       });
-      console.log('user: ', user);
+      // console.log('user: ', user);
       this.setState({isLoggedIn: true})
       
     } catch (error) {
-			console.log('TCL: App -> }catch -> error', error)
+			// console.log('TCL: App -> }catch -> error', error)
       
     }
   }
@@ -51,11 +51,11 @@ class App extends Component {
           'x-access-token': localStorage.getItem("jwtToken")
         }
       });
-      console.log('user: ', user);
+      // console.log('user: ', user);
       this.setState({isLoggedIn: true, user});
       
     } catch (error) {
-			console.log('TCL: App -> }catch -> error', error)
+			// console.log('TCL: App -> }catch -> error', error)
       
     }
 

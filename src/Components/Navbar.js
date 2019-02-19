@@ -30,8 +30,9 @@ class Navbar extends Component {
                     </div>
                     <div id="navbarBasicExample" className="navbar-menu">
                         <div className="navbar-start">
-                            <Link to="/" className="navbar-item">Home</Link>
-                            <Link to="/me" className="navbar-item">Me</Link>
+                            <Link to="/"        className="navbar-item">Home</Link>
+                            <Link to="/me"      className="navbar-item">Me</Link>
+                            <Link to="/chat"    className="navbar-item">Chat</Link>
                             {isLoggedIn ? <Link to="/new-report" className="navbar-item">Create report</Link> : ""}
 
                             <div className="navbar-item has-dropdown is-hoverable">
