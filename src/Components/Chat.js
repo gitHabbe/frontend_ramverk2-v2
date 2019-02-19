@@ -11,28 +11,27 @@ class Chat extends Component {
             msgs: [],
             isConnected: false
         }
-        
-    }
 
-    componentDidMount() {
+        this.onSubmit = this.onSubmit.bind(this);
         
     }
     
-    onChange = (e) => this.setState({[e.target.name]: e.target.value});
+    onChange = e => this.setState({[e.target.name]: e.target.value});
+    onSubmit = e => e.preventDefault();
 
-    connect = (e) => {
+    connect = e => {
         let socket = io.connect("http://localhost:3002");
         socket.on("msg", msg => {
             const msgDate = new Date(msg.date);
             const newMsg =
-                <tr key={msg.data + msg.charMsg}>
+                <tr key={msg.date + msg.chatMsg}>
                     <td>{msgDate.getHours() + ":" + msgDate.getMinutes()}</td>
                     <td><strong>{msg.username}: </strong></td>
                     <td>{msg.chatMsg}</td>
                 </tr>
             this.setState({msgs: [...this.state.msgs, newMsg]})
         });
-        socket.on("userleave", (test) => {
+        socket.on("userleave", () => {
             const date = new Date();
             const newMsg =
                 <tr>
@@ -44,6 +43,7 @@ class Chat extends Component {
         });
         this.setState({socket, isConnected: true, chatMsg: ""});
     }
+
     sendMsg() {
         this.state.socket.emit("msg", {
             username: this.state.username,
@@ -55,7 +55,46 @@ class Chat extends Component {
             newArray.shift();
             this.setState({msgs: newArray});
         }
-        // console.log("Sent msg: ", this.state.chatMsg);
+    }
+
+    getConnectForm = () => {
+        return <form
+            onSubmit={this.onSubmit.bind(this)}
+            className="form">
+            <input
+                onChange={this.onChange.bind(this)}
+                className="input"
+                value={this.state.username}
+                type="text"
+                name="username"
+                placeholder="Choose username.."
+            />
+            <button
+                onClick={this.connect.bind(this)}
+                className="button is-info"
+                type="submit"
+            >Connect</button>
+        </form>
+    }
+
+    getMessageForm = () => {
+        return <form
+            onSubmit={this.onSubmit.bind(this)}
+            className="form">
+            <input
+                onChange={this.onChange.bind(this)}
+                className="input"
+                value={this.state.chatMsg}
+                type="text"
+                name="chatMsg"
+                placeholder="Message..."
+            />
+            <button
+                onClick={this.sendMsg.bind(this)}
+                className="button is-success"
+                type="submit"
+            >Send message</button>
+        </form>
     }
     
     render() {
@@ -73,15 +112,7 @@ class Chat extends Component {
                         </table>
                     </div>
                     <div className="column is-one-quarter">
-                        { isConnected
-                            ? <input onChange={this.onChange.bind(this)} type="text" name="chatMsg" id="chatMsg" placeholder="Chat msg" />
-                            : <input onChange={this.onChange.bind(this)} type="text" name="username" id="username" placeholder="username" />
-                        }
-                        
-                        { isConnected
-                            ? <button onClick={this.sendMsg.bind(this)}>Send message</button>
-                            : <button onClick={this.connect.bind(this)}>Connect to chat</button>
-                        }
+                        { isConnected ? this.getMessageForm() : this.getConnectForm() }
                     </div>
                 </div>
             </div>
