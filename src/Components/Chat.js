@@ -20,7 +20,7 @@ class Chat extends Component {
     onSubmit = e => e.preventDefault();
 
     connect = e => {
-        let socket = io.connect("http://localhost:3002");
+        let socket = io.connect(`${process.env.REACT_APP_SOCKET_URL}`);
         socket.on("msg", msg => {
             const msgDate = new Date(msg.date);
             const newMsg =
@@ -100,7 +100,7 @@ class Chat extends Component {
     
     render() {
         const { isConnected } = this.state;
-        console.log("this.state.msgs", this.state.msgs);
+        // console.log("this.state.msgs", this.state.msgs);
         return (
             <div className="container"><br/>
                 <div className="columns is-centered">
