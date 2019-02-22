@@ -55,6 +55,7 @@ class Chat extends Component {
             newArray.shift();
             this.setState({msgs: newArray});
         }
+        this.setState({chatMsg: ""});
     }
 
     getConnectForm = () => {
