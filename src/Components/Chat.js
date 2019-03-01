@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
+import axios from 'axios';
 
 class Chat extends Component {
     constructor(props) {
@@ -19,9 +20,21 @@ class Chat extends Component {
     onChange = e => this.setState({[e.target.name]: e.target.value});
     onSubmit = e => e.preventDefault();
 
-    connect = e => {
+    connect = async (e) => {
         let socket = io.connect(`${process.env.REACT_APP_SOCKET_URL}`);
-        socket.on("msg", msg => {
+        let log = await axios.get(`http://localhost:1337/getlogsmall`);
+        let msgList = log.data.slice(0, 5).reverse().map(entry => {
+            const newDate = new Date(entry.date);
+            return (
+                <tr key={newDate + entry.charMsg}>
+                    <td>{newDate.getHours() + ":" + newDate.getMinutes()}</td>
+                    <td><strong>{entry.username}: </strong></td>
+                    <td>{entry.chatMsg}</td>
+                </tr>
+            );
+        });
+        this.setState({msgs: msgList});
+        socket.on("msg", async msg => {
             const msgDate = new Date(msg.date);
             const newMsg =
                 <tr key={msg.date + msg.chatMsg}>
@@ -29,6 +42,15 @@ class Chat extends Component {
                     <td><strong>{msg.username}: </strong></td>
                     <td>{msg.chatMsg}</td>
                 </tr>
+            const test = await axios.post(`http://localhost:1337/new-msg`,
+                {
+                    username: msg.username,
+                    chatMsg: msg.chatMsg,
+                    date: msgDate
+                }
+            );
+            console.log('TCL: Chat -> test', test)
+
             this.setState({msgs: [...this.state.msgs, newMsg]})
         });
         socket.on("userleave", () => {
@@ -56,6 +78,8 @@ class Chat extends Component {
             this.setState({msgs: newArray});
         }
         this.setState({chatMsg: ""});
+        console.log('TCL: Chat -> connect -> this.state.msgs', this.state.msgs)
+
     }
 
     getConnectForm = () => {
